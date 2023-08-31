@@ -35,8 +35,7 @@ provider "aws" {
 }
 
 module "ec2-ad" {
-  source = "git::https://github.com/varunrai/terraform-aws-ec2activedirectory.git"
-
+  source                  = "git::https://github.com/varunrai/terraform-aws-ec2activedirectory.git"
   ad_domain               = "ad.fsxn.com"
   ad_service_account      = "fsxnadmin"
   ad_service_account_pwd  = var.default_password
@@ -51,18 +50,15 @@ module "ec2-ad" {
 }
 
 module "vpn" {
-  source = "git::https://github.com/varunrai/terraform-aws-clientvpn.git"
-
+  source           = "git::https://github.com/varunrai/terraform-aws-clientvpn.git"
   vpc_id           = aws_vpc.vpc.id
   vpn_cidr         = "10.100.0.0/22"
   public_subnet_id = aws_subnet.public_subnet[0].id
-
-  depends_on = [module.ec2-ad, module.fsxontap-fs1]
+  depends_on       = [module.ec2-ad, module.fsxontap-fs1]
 }
 
 module "fsxontap-fs1" {
-  source = "git::https://github.com/varunrai/terraform-aws-fsxn.git"
-
+  source              = "git::https://github.com/varunrai/terraform-aws-fsxn.git"
   creator_tag         = var.creator_tag
   filesystem_password = var.default_password
   filesystem = {
