@@ -75,11 +75,11 @@ module "fsxontap-fs1" {
       {
         enable_smb                 = true
         name                       = "svm01"
-        root_volume_security_style = "NTFS"
+        root_volume_security_style = var.fsxn.volume_security_style
         svm_admin_password         = var.default_password
 
         ad = {
-          svm_netbiosname          = "FSxN_SVM01"
+          svm_netbiosname          = "FSxN-SVM01"
           domain_name              = "AD.FSXN.COM"
           administrators_group     = "FSXN Administrators"
           ou                       = "OU=FSXN,DC=AD,DC=FSXN,DC=com"
@@ -91,7 +91,7 @@ module "fsxontap-fs1" {
         volumes = [{
           name                       = "vol1"
           junction_path              = "/vol1"
-          security_style             = "NTFS"
+          security_style             = var.fsxn.volume_security_style
           size_in_megabytes          = 1024000
           skip_final_backup          = true
           storage_efficiency_enabled = true
@@ -101,7 +101,7 @@ module "fsxontap-fs1" {
           {
             name                       = "vol2"
             junction_path              = "/vol2"
-            security_style             = "NTFS"
+            security_style             = var.fsxn.volume_security_style
             size_in_megabytes          = 1024000
             skip_final_backup          = true
             storage_efficiency_enabled = true
@@ -111,7 +111,7 @@ module "fsxontap-fs1" {
           {
             name                       = "vol3"
             junction_path              = "/vol3"
-            security_style             = "NTFS"
+            security_style             = var.fsxn.volume_security_style
             size_in_megabytes          = 1024000
             skip_final_backup          = true
             storage_efficiency_enabled = true

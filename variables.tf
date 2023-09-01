@@ -43,10 +43,10 @@ variable "ec2_security_group_config" {
       ipv6_cidr_blocks = ["::/0"]
     },
     {
-      description      = "AD Ports"
+      description      = "Within VPC Traffic/Ports"
       port             = 0
       protocol         = "-1"
-      cidr_blocks      = ["172.20.10.0/24"]
+      cidr_blocks      = ["10.0.0.0/16"]
       ipv6_cidr_blocks = ["::/0"]
     },
     {
